@@ -36,7 +36,7 @@ Copy the `review-tool` directory to your project root.
 
 ```bash
 cd review-tool
-./review.sh
+./reviewer
 ```
 
 

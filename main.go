@@ -15,11 +15,6 @@ import (
 )
 
 func main() {
-	reviewOnly := false
-	if len(os.Args) > 1 && os.Args[1] == "--review-only" {
-		reviewOnly = true
-	}
-
 	diff, err := getGitDiff()
 	if err != nil {
 		fmt.Println("❌ Error getting git diff:", err)
@@ -30,21 +25,19 @@ func main() {
 		fmt.Println("✅ No changes to review.")
 		os.Exit(0)
 	}
-
+	fmt.Println("🔍 Reviewing staged changes...")
 	review, err := reviewWithGemini(diff)
 	if err != nil {
 		fmt.Println("❌ Error calling Gemini:", err)
 		os.Exit(1)
 	}
 
-	fmt.Println("📋 AI Suggestions:\n")
-	fmt.Println(review)
-
-	if !reviewOnly && isCritical(review) {
+	if isCritical(review) {
 		fmt.Println("🚫 Critical issues found — please fix before pushing.")
 		os.Exit(1)
+	} else {
+		fmt.Println("✅ No critical issues found. Please view review-<timestamp>.md for details.")
 	}
-
 	os.Exit(0)
 }
 
@@ -102,7 +95,7 @@ func reviewWithGemini(diff string) (string, error) {
 		return "", fmt.Errorf("failed to write %s: %w", filename, err)
 	}
 
-	return "", nil
+	return output, nil
 }
 
 func isCritical(review string) bool {

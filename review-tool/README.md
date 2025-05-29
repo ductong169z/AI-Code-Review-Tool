@@ -1,7 +1,7 @@
 
 # 🤖 AI Code Review Tool
 
-An automated code review tool using AI (Google Gemini or OpenAI GPT). The `review.sh` script helps you review your staged Git changes before pushing.
+An automated code review tool using AI (Google Gemini or OpenAI GPT). The `reviewer` binary helps you review your staged Git changes before pushing.
 
 ---
 
@@ -10,7 +10,6 @@ An automated code review tool using AI (Google Gemini or OpenAI GPT). The `revie
 ```
 review-tool/
 ├── reviewer            # Review binary
-├── review.sh         # Bash script to run the review
 ├── prompt.txt        # Custom prompt for the AI reviewer
 ├── .env              # Contains GEMINI_API_KEY or OPENAI_API_KEY
 ├── review-<timestamp>.md # Output file with AI review results
@@ -50,7 +49,7 @@ You **must** change into the `review-tool` directory first:
 
 ```bash
 cd review-tool
-./review.sh
+./reviewer
 ```
 
 You can optimize prompt.txt to make the review more accurate.

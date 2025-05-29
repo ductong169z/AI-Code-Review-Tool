@@ -9,6 +9,10 @@ For each issue, use this format:
   [Clear suggestion to fix.]
 
 Issue types: Naming Convention, Error Handling, Documentation, Formatting, Package Name.
+Critical issues are those whose descriptions contain any of the following words:
+"should", "must", "missing", "bug", "incorrect"
+
+Prefix critical issues with: ❗ Critical
 
 No greetings, summaries, or extra text. Output only the review in this format.
 
@@ -19,7 +23,7 @@ Example:
 - **L12:** Naming Convention  
   Variable `CatName` should be `catName` to follow Go camelCase.
 
-- **L25:** Error Handling  
+- **❗ L25:** Error Handling  
   Missing error check after `json.Unmarshal`. Always check errors immediately.
 
 - **L40:** Documentation  
